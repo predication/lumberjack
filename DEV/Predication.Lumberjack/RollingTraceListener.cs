@@ -47,7 +47,9 @@ namespace Predication.Lumberjack
         #region private Methods
 
         /// <summary>
-        /// Creates a suitable filepath for a logging file if nothing was declared in initialiseData.
+        /// <para>Creates a suitable filepath for a logging file if nothing was declared in initialiseData.</para>
+        /// <para>It looks for c:\temp, c:\windows\temp, C:\Users\USERNAME\AppData\Local\Temp (in that order)</para>
+        /// <para>It uses the assembly name and appends ".log" (e.g. "c:\temp\Predication.Lumberjack.log")</para>
         /// </summary>
         /// <returns>a reasonable guess for a logging filepath in a writable location</returns>
         private string GuessAtSuitableLogFilePath()
