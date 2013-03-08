@@ -19,9 +19,24 @@ namespace Predication.Lumberjack
 
         #region private Members
 
+        /// <summary>
+        /// the filepath the log is written to
+        /// </summary>
         private string _filepath;
+
+        /// <summary>
+        ///  the filepath the existing log file is moved to when it is too big
+        /// </summary>
         private string _filepath_old;
+
+        /// <summary>
+        /// the filesize (in bytes) that is considered the upper-limit of big-ness
+        /// </summary>
         private long _filesize;
+
+        /// <summary>
+        /// the number of times that file has been written to since its size was last checked
+        /// </summary>
         private int _filesizeCheckCounter;
 
         #endregion
