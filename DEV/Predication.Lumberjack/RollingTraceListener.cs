@@ -17,11 +17,12 @@ namespace Predication.Lumberjack
     public class RollingTraceListener : TraceListener
     {
 
-        #region protected Members
+        #region private Members
 
-        protected string _filepath;
-        protected string _filepath_old;
-        protected long _filesize;
+        private string _filepath;
+        private string _filepath_old;
+        private long _filesize;
+        private int _filesizeCheckCounter;
 
         #endregion
 
@@ -107,19 +108,15 @@ namespace Predication.Lumberjack
             }
         }
 
-        #endregion
-
-        #region overriden TraceListener Methods
-
-        public override void Write(string message)
+        /// <summary>
+        /// check the file size every hundred writes and move the file to the "_old" version
+        /// if it is over the limit
+        /// </summary>
+        private void CheckFileSize()
         {
-            if (message != null)
-                File.AppendAllText(_filepath, message);
-        }
-
-        public override void WriteLine(string message)
-        {
-            if (!string.IsNullOrEmpty(message))
+            if (_filesizeCheckCounter > 99)
+                _filesizeCheckCounter = 0;
+            if (_filesizeCheckCounter == 0)
             {
                 FileInfo info = new FileInfo(_filepath);
                 if (info.Exists && info.Length > _filesize)
@@ -127,6 +124,28 @@ namespace Predication.Lumberjack
                     File.Delete(_filepath_old);
                     File.Move(_filepath, _filepath_old);
                 }
+            }
+            _filesizeCheckCounter++;
+        }
+
+        #endregion
+
+        #region overriden TraceListener Methods
+
+        public override void Write(string message)
+        {
+            if (message != null)
+            {
+                CheckFileSize();
+                File.AppendAllText(_filepath, message);
+            }
+        }
+
+        public override void WriteLine(string message)
+        {
+            if (!string.IsNullOrEmpty(message))
+            {
+                CheckFileSize();
                 File.AppendAllText(_filepath, Environment.NewLine + message);
             }
         }
