@@ -1,5 +1,4 @@
 C:\Users\Howard\Documents\GitHub\lumberjack\DEV\Predication.Lumberjack\bin\Debug\Predication.Lumberjack.dll
 C:\Users\Howard\Documents\GitHub\lumberjack\DEV\Predication.Lumberjack\bin\Debug\Predication.Lumberjack.pdb
-C:\Users\Howard\Documents\GitHub\lumberjack\DEV\Predication.Lumberjack\obj\Debug\Predication.Lumberjack.csprojResolveAssemblyReference.cache
 C:\Users\Howard\Documents\GitHub\lumberjack\DEV\Predication.Lumberjack\obj\Debug\Predication.Lumberjack.dll
 C:\Users\Howard\Documents\GitHub\lumberjack\DEV\Predication.Lumberjack\obj\Debug\Predication.Lumberjack.pdb
